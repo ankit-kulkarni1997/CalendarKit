@@ -65,6 +65,9 @@ class DateLabel: UILabel, DaySelectorItemProtocol {
       textColor = today ? style.todayInactiveTextColor : notTodayColor
       backgroundColor = style.inactiveBackgroundColor
     }
+    if today, !selected {
+        backgroundColor = UIColor(rgb: 0x0f2583)
+    }
   }
 
   private func component(component: Calendar.Component, from date: Date) -> Int {

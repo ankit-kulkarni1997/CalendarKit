@@ -41,14 +41,14 @@ public class DayHeaderStyle: NSCopying {
 
 public class DaySelectorStyle: NSCopying {
   public var activeTextColor = UIColor.white
-  public var selectedBackgroundColor = UIColor.black
+  public var selectedBackgroundColor = UIColor(red: CGFloat(36)/255, green: CGFloat(119)/255, blue: CGFloat(251)/255, alpha: 1.0)
 
   public var weekendTextColor = UIColor.gray
   public var inactiveTextColor = UIColor.black
   public var inactiveBackgroundColor = UIColor.clear
 
-  public var todayInactiveTextColor = UIColor.red
-  public var todayActiveBackgroundColor = UIColor.red
+  public var todayInactiveTextColor = UIColor.white
+  public var todayActiveBackgroundColor = UIColor(red: CGFloat(36)/255, green: CGFloat(119)/255, blue: CGFloat(251)/255, alpha: 1.0)
     
   public var font = UIFont.systemFont(ofSize: 18)
   public var todayFont = UIFont.boldSystemFont(ofSize: 18)
@@ -154,4 +154,22 @@ public class AllDayStyle: NSCopying {
     
     return copy
   }
+}
+
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(rgb: Int) {
+        self.init(
+            red: (rgb >> 16) & 0xFF,
+            green: (rgb >> 8) & 0xFF,
+            blue: rgb & 0xFF
+        )
+    }
 }
